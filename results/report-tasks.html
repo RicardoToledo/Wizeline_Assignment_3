@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Artillery report</title>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.0/d3.min.js' charset='utf-8'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/metrics-graphics/2.6.0/metricsgraphics.min.js"></script>
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link href='https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
+  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.0/ace.js" charset="utf-8"></script>
+
+  <style>
+  body, p, li {
+    font-family: sans-serif;
+    font-size: 10pt;
+  }
+
+  h1 {
+    font-size: 18pt;
+    font-weight: bold;
+  }
+
+  #errorsContainer > p {
+    color: #009900;
+  }
+
+  #footer {
+    padding: 1em;
+    font-size: 0.8em;
+    color: #999;
+    text-align: center;
+    margin-top: 1em;
+    background-color: #eee;
+  }
+  #editor {
+    font-size: 8pt;
+    height: 20em;
+  }
+  </style>
+
+  <script>
+  window.Report = {
+  "aggregate": {
+    "timestamp": "2021-03-25T04:53:37.686Z",
+    "scenariosCreated": 2952,
+    "scenariosCompleted": 614,
+    "requestsCompleted": 3203,
+    "latency": {
+      "min": 74.9,
+      "max": 9576.5,
+      "median": 295.2,
+      "p95": 4633.9,
+      "p99": 5209
+    },
+    "rps": {
+      "count": 3203,
+      "mean": 10.65
+    },
+    "scenarioDuration": {
+      "min": 164.1,
+      "max": 26593.5,
+      "median": 377.7,
+      "p95": 9306.1,
+      "p99": 19672.7
+    },
+    "scenarioCounts": {
+      "Create a task": 490,
+      "Complete flow for 1 task": 537,
+      "Create, close and reopen 1 task": 487,
+      "Create and update 1 task": 480,
+      "Create and delete 1 task": 468,
+      "Get all active tasks": 490
+    },
+    "errors": {},
+    "codes": {
+      "200": 225,
+      "204": 105,
+      "429": 2728,
+      "500": 145
+    },
+    "matches": 0,
+    "customStats": {},
+    "counters": {},
+    "scenariosAvoided": 48,
+    "phases": [
+      {
+        "duration": 300,
+        "arrivalRate": 10,
+        "maxVusers": 50,
+        "name": "Load Phase"
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2021-03-25T04:48:46.651Z",
+      "scenariosCreated": 99,
+      "scenariosCompleted": 40,
+      "requestsCompleted": 125,
+      "latency": {
+        "min": 74.9,
+        "max": 5856.4,
+        "median": 728.5,
+        "p95": 5228.7,
+        "p99": 5577.5
+      },
+      "rps": {
+        "count": 172,
+        "mean": 17.46
+      },
+      "scenarioDuration": {
+        "min": 164.1,
+        "max": 8458.4,
+        "median": 679.3,
+        "p95": 5495.7,
+        "p99": 8458.4
+      },
+      "scenarioCounts": {
+        "Create a task": 19,
+        "Complete flow for 1 task": 21,
+        "Create, close and reopen 1 task": 13,
+        "Create and update 1 task": 17,
+        "Create and delete 1 task": 13,
+        "Get all active tasks": 16
+      },
+      "errors": {},
+      "codes": {
+        "200": 86,
+        "204": 24,
+        "500": 15
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 47,
+      "pendingRequests": 47,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:48:56.649Z",
+      "scenariosCreated": 67,
+      "scenariosCompleted": 39,
+      "requestsCompleted": 149,
+      "latency": {
+        "min": 74.9,
+        "max": 7741,
+        "median": 3621,
+        "p95": 5254.4,
+        "p99": 5765.7
+      },
+      "rps": {
+        "count": 152,
+        "mean": 15.22
+      },
+      "scenarioDuration": {
+        "min": 175.8,
+        "max": 17427.8,
+        "median": 6897.3,
+        "p95": 14772.2,
+        "p99": 17427.8
+      },
+      "scenarioCounts": {
+        "Create a task": 17,
+        "Create, close and reopen 1 task": 10,
+        "Complete flow for 1 task": 10,
+        "Get all active tasks": 7,
+        "Create and update 1 task": 17,
+        "Create and delete 1 task": 6
+      },
+      "errors": {},
+      "codes": {
+        "200": 60,
+        "204": 40,
+        "500": 49
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 50,
+      "pendingRequests": 50,
+      "scenariosAvoided": 33
+    },
+    {
+      "timestamp": "2021-03-25T04:49:06.650Z",
+      "scenariosCreated": 85,
+      "scenariosCompleted": 64,
+      "requestsCompleted": 175,
+      "latency": {
+        "min": 75.8,
+        "max": 9576.5,
+        "median": 2620.7,
+        "p95": 5233.5,
+        "p99": 8425
+      },
+      "rps": {
+        "count": 159,
+        "mean": 16.01
+      },
+      "scenarioDuration": {
+        "min": 207.5,
+        "max": 26593.5,
+        "median": 5064.4,
+        "p95": 20777.3,
+        "p99": 26336.7
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 8,
+        "Create, close and reopen 1 task": 14,
+        "Complete flow for 1 task": 15,
+        "Create a task": 23,
+        "Create and delete 1 task": 13,
+        "Get all active tasks": 12
+      },
+      "errors": {},
+      "codes": {
+        "200": 69,
+        "204": 34,
+        "429": 13,
+        "500": 59
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 34,
+      "pendingRequests": 34,
+      "scenariosAvoided": 15
+    },
+    {
+      "timestamp": "2021-03-25T04:49:16.650Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 27,
+      "requestsCompleted": 151,
+      "latency": {
+        "min": 95.1,
+        "max": 5228.3,
+        "median": 190.7,
+        "p95": 5089.4,
+        "p99": 5168.3
+      },
+      "rps": {
+        "count": 119,
+        "mean": 11.91
+      },
+      "scenarioDuration": {
+        "min": 195,
+        "max": 22495.5,
+        "median": 4878,
+        "p95": 18133.8,
+        "p99": 22495.5
+      },
+      "scenarioCounts": {
+        "Complete flow for 1 task": 24,
+        "Create and delete 1 task": 15,
+        "Create, close and reopen 1 task": 14,
+        "Get all active tasks": 12,
+        "Create a task": 17,
+        "Create and update 1 task": 18
+      },
+      "errors": {},
+      "codes": {
+        "200": 10,
+        "204": 7,
+        "429": 112,
+        "500": 22
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:49:26.650Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 16,
+      "requestsCompleted": 101,
+      "latency": {
+        "min": 177.9,
+        "max": 408.8,
+        "median": 227.2,
+        "p95": 407,
+        "p99": 408.3
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 183,
+        "max": 310.7,
+        "median": 217,
+        "p95": 310.4,
+        "p99": 310.7
+      },
+      "scenarioCounts": {
+        "Create a task": 12,
+        "Create, close and reopen 1 task": 17,
+        "Complete flow for 1 task": 23,
+        "Create and delete 1 task": 16,
+        "Create and update 1 task": 17,
+        "Get all active tasks": 15
+      },
+      "errors": {},
+      "codes": {
+        "429": 101
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:49:36.650Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 15,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 176.4,
+        "max": 259.7,
+        "median": 187.8,
+        "p95": 253.9,
+        "p99": 258.7
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 180.4,
+        "max": 262.9,
+        "median": 189.8,
+        "p95": 261.7,
+        "p99": 262.9
+      },
+      "scenarioCounts": {
+        "Complete flow for 1 task": 24,
+        "Create a task": 12,
+        "Create and update 1 task": 15,
+        "Create and delete 1 task": 22,
+        "Create, close and reopen 1 task": 12,
+        "Get all active tasks": 15
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:49:46.650Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 24,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 175.1,
+        "max": 273,
+        "median": 186.4,
+        "p95": 256.5,
+        "p99": 270.6
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 179.1,
+        "max": 260.8,
+        "median": 188.2,
+        "p95": 259.2,
+        "p99": 260.8
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 24,
+        "Create a task": 13,
+        "Complete flow for 1 task": 21,
+        "Create and delete 1 task": 13,
+        "Create, close and reopen 1 task": 11,
+        "Create and update 1 task": 18
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:49:56.651Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 18,
+      "requestsCompleted": 96,
+      "latency": {
+        "min": 176.2,
+        "max": 715.2,
+        "median": 198,
+        "p95": 614.3,
+        "p99": 696.4
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.02
+      },
+      "scenarioDuration": {
+        "min": 179,
+        "max": 717.2,
+        "median": 197.5,
+        "p95": 662.4,
+        "p99": 717.2
+      },
+      "scenarioCounts": {
+        "Create a task": 16,
+        "Get all active tasks": 20,
+        "Create, close and reopen 1 task": 14,
+        "Complete flow for 1 task": 11,
+        "Create and update 1 task": 19,
+        "Create and delete 1 task": 20
+      },
+      "errors": {},
+      "codes": {
+        "429": 96
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 6,
+      "pendingRequests": 6,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:06.651Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 13,
+      "requestsCompleted": 105,
+      "latency": {
+        "min": 176.3,
+        "max": 671,
+        "median": 195.4,
+        "p95": 362.8,
+        "p99": 617.2
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 179.6,
+        "max": 576.2,
+        "median": 189.2,
+        "p95": 555.8,
+        "p99": 576.2
+      },
+      "scenarioCounts": {
+        "Create, close and reopen 1 task": 21,
+        "Create and delete 1 task": 20,
+        "Create and update 1 task": 12,
+        "Get all active tasks": 11,
+        "Create a task": 21,
+        "Complete flow for 1 task": 15
+      },
+      "errors": {},
+      "codes": {
+        "429": 105
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:16.651Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 22,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 176.2,
+        "max": 282.4,
+        "median": 193.4,
+        "p95": 260.7,
+        "p99": 281
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 182.6,
+        "max": 284.9,
+        "median": 197.7,
+        "p95": 284.7,
+        "p99": 284.9
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 15,
+        "Get all active tasks": 22,
+        "Complete flow for 1 task": 13,
+        "Create, close and reopen 1 task": 18,
+        "Create and delete 1 task": 18,
+        "Create a task": 14
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:26.651Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 7,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 177.5,
+        "max": 317,
+        "median": 200.3,
+        "p95": 275.9,
+        "p99": 312.9
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 193.6,
+        "max": 230.6,
+        "median": 202.2,
+        "p95": 230.6,
+        "p99": 230.6
+      },
+      "scenarioCounts": {
+        "Create, close and reopen 1 task": 20,
+        "Create and update 1 task": 22,
+        "Create a task": 12,
+        "Complete flow for 1 task": 23,
+        "Create and delete 1 task": 16,
+        "Get all active tasks": 7
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:36.651Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 13,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 176.7,
+        "max": 292.9,
+        "median": 196.2,
+        "p95": 268,
+        "p99": 286.1
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 180.3,
+        "max": 279.7,
+        "median": 199.1,
+        "p95": 275.2,
+        "p99": 279.7
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 14,
+        "Create a task": 22,
+        "Complete flow for 1 task": 16,
+        "Create, close and reopen 1 task": 9,
+        "Create and delete 1 task": 26,
+        "Create and update 1 task": 13
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:46.652Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 20,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 179.1,
+        "max": 330.1,
+        "median": 196.6,
+        "p95": 263.2,
+        "p99": 319.9
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 181.7,
+        "max": 221.2,
+        "median": 197.6,
+        "p95": 217.9,
+        "p99": 221.2
+      },
+      "scenarioCounts": {
+        "Complete flow for 1 task": 25,
+        "Get all active tasks": 19,
+        "Create and delete 1 task": 11,
+        "Create a task": 20,
+        "Create, close and reopen 1 task": 14,
+        "Create and update 1 task": 11
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:50:56.652Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 20,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 177.8,
+        "max": 440.6,
+        "median": 206.2,
+        "p95": 333.2,
+        "p99": 421.6
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 185.9,
+        "max": 291.2,
+        "median": 208,
+        "p95": 276.4,
+        "p99": 291.2
+      },
+      "scenarioCounts": {
+        "Create and delete 1 task": 20,
+        "Complete flow for 1 task": 9,
+        "Create and update 1 task": 11,
+        "Get all active tasks": 22,
+        "Create, close and reopen 1 task": 20,
+        "Create a task": 18
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 3,
+      "pendingRequests": 3,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:06.652Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 18,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 182,
+        "max": 405.7,
+        "median": 208.4,
+        "p95": 314.4,
+        "p99": 386.4
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 186.8,
+        "max": 280.5,
+        "median": 206.7,
+        "p95": 277.9,
+        "p99": 280.5
+      },
+      "scenarioCounts": {
+        "Create a task": 16,
+        "Create and delete 1 task": 19,
+        "Get all active tasks": 16,
+        "Complete flow for 1 task": 21,
+        "Create, close and reopen 1 task": 15,
+        "Create and update 1 task": 13
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 4,
+      "pendingRequests": 4,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:16.652Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 15,
+      "requestsCompleted": 102,
+      "latency": {
+        "min": 177.6,
+        "max": 649.2,
+        "median": 239.8,
+        "p95": 461.4,
+        "p99": 610
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 186.4,
+        "max": 413.2,
+        "median": 209.4,
+        "p95": 387,
+        "p99": 413.2
+      },
+      "scenarioCounts": {
+        "Create, close and reopen 1 task": 27,
+        "Get all active tasks": 16,
+        "Create and update 1 task": 10,
+        "Create a task": 18,
+        "Complete flow for 1 task": 20,
+        "Create and delete 1 task": 9
+      },
+      "errors": {},
+      "codes": {
+        "429": 102
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:26.653Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 20,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 179.6,
+        "max": 1053.2,
+        "median": 374.1,
+        "p95": 941.6,
+        "p99": 1016.9
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 234.3,
+        "max": 962.5,
+        "median": 389.7,
+        "p95": 869,
+        "p99": 962.5
+      },
+      "scenarioCounts": {
+        "Create a task": 15,
+        "Create and delete 1 task": 15,
+        "Complete flow for 1 task": 19,
+        "Create, close and reopen 1 task": 15,
+        "Create and update 1 task": 16,
+        "Get all active tasks": 20
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 3,
+      "pendingRequests": 3,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:36.653Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 21,
+      "requestsCompleted": 102,
+      "latency": {
+        "min": 178.2,
+        "max": 801.4,
+        "median": 234.8,
+        "p95": 699.8,
+        "p99": 772.7
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 181,
+        "max": 803.2,
+        "median": 258.9,
+        "p95": 772.4,
+        "p99": 803.2
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 20,
+        "Complete flow for 1 task": 21,
+        "Create, close and reopen 1 task": 16,
+        "Create a task": 15,
+        "Create and delete 1 task": 16,
+        "Create and update 1 task": 12
+      },
+      "errors": {},
+      "codes": {
+        "429": 102
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 1,
+      "pendingRequests": 1,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:46.653Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 22,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 176.5,
+        "max": 848.1,
+        "median": 262.3,
+        "p95": 721.7,
+        "p99": 833.3
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 188.8,
+        "max": 849.6,
+        "median": 317.3,
+        "p95": 682.8,
+        "p99": 849.6
+      },
+      "scenarioCounts": {
+        "Create and delete 1 task": 11,
+        "Create a task": 14,
+        "Complete flow for 1 task": 22,
+        "Create, close and reopen 1 task": 18,
+        "Create and update 1 task": 13,
+        "Get all active tasks": 22
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 2,
+      "pendingRequests": 2,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:51:56.653Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 19,
+      "requestsCompleted": 97,
+      "latency": {
+        "min": 184.9,
+        "max": 1056,
+        "median": 310.3,
+        "p95": 927.3,
+        "p99": 1039.7
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 189.4,
+        "max": 766.6,
+        "median": 237.3,
+        "p95": 761.9,
+        "p99": 766.6
+      },
+      "scenarioCounts": {
+        "Create a task": 17,
+        "Create, close and reopen 1 task": 11,
+        "Create and update 1 task": 24,
+        "Get all active tasks": 20,
+        "Complete flow for 1 task": 14,
+        "Create and delete 1 task": 14
+      },
+      "errors": {},
+      "codes": {
+        "429": 97
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 5,
+      "pendingRequests": 5,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:06.654Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 12,
+      "requestsCompleted": 95,
+      "latency": {
+        "min": 183.9,
+        "max": 1081.3,
+        "median": 347.4,
+        "p95": 995.1,
+        "p99": 1064.4
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 196.5,
+        "max": 907.6,
+        "median": 367.5,
+        "p95": 897.6,
+        "p99": 907.6
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 19,
+        "Create and delete 1 task": 17,
+        "Get all active tasks": 13,
+        "Complete flow for 1 task": 23,
+        "Create, close and reopen 1 task": 13,
+        "Create a task": 15
+      },
+      "errors": {},
+      "codes": {
+        "429": 95
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 10,
+      "pendingRequests": 10,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:16.654Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 19,
+      "requestsCompleted": 102,
+      "latency": {
+        "min": 203,
+        "max": 1390.8,
+        "median": 660.1,
+        "p95": 1343.1,
+        "p99": 1389.5
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 216.3,
+        "max": 1389.8,
+        "median": 656,
+        "p95": 1235.6,
+        "p99": 1389.8
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 21,
+        "Get all active tasks": 18,
+        "Create a task": 16,
+        "Create, close and reopen 1 task": 13,
+        "Create and delete 1 task": 15,
+        "Complete flow for 1 task": 17
+      },
+      "errors": {},
+      "codes": {
+        "429": 102
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 8,
+      "pendingRequests": 8,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:26.654Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 14,
+      "requestsCompleted": 96,
+      "latency": {
+        "min": 211,
+        "max": 1580.9,
+        "median": 891.8,
+        "p95": 1526.1,
+        "p99": 1566.9
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 216.3,
+        "max": 1542.9,
+        "median": 909,
+        "p95": 1529.7,
+        "p99": 1542.9
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 15,
+        "Complete flow for 1 task": 19,
+        "Create a task": 16,
+        "Create, close and reopen 1 task": 18,
+        "Create and delete 1 task": 15,
+        "Create and update 1 task": 17
+      },
+      "errors": {},
+      "codes": {
+        "429": 96
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 12,
+      "pendingRequests": 12,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:36.654Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 22,
+      "requestsCompleted": 105,
+      "latency": {
+        "min": 292.6,
+        "max": 1345.5,
+        "median": 566.3,
+        "p95": 1313.9,
+        "p99": 1337.3
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 345.2,
+        "max": 1314.8,
+        "median": 583.8,
+        "p95": 1289.4,
+        "p99": 1314.8
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 23,
+        "Create, close and reopen 1 task": 16,
+        "Create and update 1 task": 16,
+        "Create and delete 1 task": 18,
+        "Create a task": 17,
+        "Complete flow for 1 task": 10
+      },
+      "errors": {},
+      "codes": {
+        "429": 105
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 7,
+      "pendingRequests": 7,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:46.655Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 17,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 582.6,
+        "max": 1385.6,
+        "median": 761,
+        "p95": 1270.8,
+        "p99": 1385.3
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 602.5,
+        "max": 1357.2,
+        "median": 933.4,
+        "p95": 1305.8,
+        "p99": 1357.2
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 19,
+        "Complete flow for 1 task": 15,
+        "Create, close and reopen 1 task": 23,
+        "Create and delete 1 task": 11,
+        "Get all active tasks": 14,
+        "Create a task": 18
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 8,
+      "pendingRequests": 8,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:52:56.655Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 11,
+      "requestsCompleted": 99,
+      "latency": {
+        "min": 661.1,
+        "max": 1468.8,
+        "median": 859.1,
+        "p95": 1361.3,
+        "p99": 1460.1
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 719.1,
+        "max": 1183.5,
+        "median": 815.4,
+        "p95": 1170.9,
+        "p99": 1183.5
+      },
+      "scenarioCounts": {
+        "Create a task": 12,
+        "Create and update 1 task": 15,
+        "Create, close and reopen 1 task": 18,
+        "Complete flow for 1 task": 23,
+        "Create and delete 1 task": 20,
+        "Get all active tasks": 12
+      },
+      "errors": {},
+      "codes": {
+        "429": 99
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 9,
+      "pendingRequests": 9,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:53:06.655Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 21,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 693.3,
+        "max": 1462.3,
+        "median": 897,
+        "p95": 1337.1,
+        "p99": 1435.1
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 756.2,
+        "max": 1463.7,
+        "median": 885,
+        "p95": 1414.6,
+        "p99": 1463.7
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 21,
+        "Complete flow for 1 task": 12,
+        "Get all active tasks": 21,
+        "Create a task": 14,
+        "Create, close and reopen 1 task": 21,
+        "Create and delete 1 task": 11
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 9,
+      "pendingRequests": 9,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:53:16.655Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 18,
+      "requestsCompleted": 101,
+      "latency": {
+        "min": 727.1,
+        "max": 1025.9,
+        "median": 825.8,
+        "p95": 972.5,
+        "p99": 1017.6
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 752.4,
+        "max": 1027.4,
+        "median": 804.5,
+        "p95": 977.1,
+        "p99": 1027.4
+      },
+      "scenarioCounts": {
+        "Create and delete 1 task": 18,
+        "Complete flow for 1 task": 15,
+        "Create and update 1 task": 17,
+        "Create, close and reopen 1 task": 19,
+        "Get all active tasks": 18,
+        "Create a task": 13
+      },
+      "errors": {},
+      "codes": {
+        "429": 101
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 8,
+      "pendingRequests": 8,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:53:26.656Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 11,
+      "requestsCompleted": 100,
+      "latency": {
+        "min": 691.1,
+        "max": 967,
+        "median": 778.1,
+        "p95": 870.6,
+        "p99": 933.7
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 716.7,
+        "max": 851.2,
+        "median": 774.3,
+        "p95": 850.4,
+        "p99": 851.2
+      },
+      "scenarioCounts": {
+        "Create and delete 1 task": 17,
+        "Create, close and reopen 1 task": 21,
+        "Create and update 1 task": 16,
+        "Complete flow for 1 task": 19,
+        "Create a task": 17,
+        "Get all active tasks": 10
+      },
+      "errors": {},
+      "codes": {
+        "429": 100
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 8,
+      "pendingRequests": 8,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:53:36.656Z",
+      "scenariosCreated": 100,
+      "scenariosCompleted": 14,
+      "requestsCompleted": 101,
+      "latency": {
+        "min": 727.4,
+        "max": 1110.5,
+        "median": 830,
+        "p95": 1006.8,
+        "p99": 1072.9
+      },
+      "rps": {
+        "count": 100,
+        "mean": 10.01
+      },
+      "scenarioDuration": {
+        "min": 767.2,
+        "max": 935.4,
+        "median": 831.3,
+        "p95": 934.3,
+        "p99": 935.4
+      },
+      "scenarioCounts": {
+        "Get all active tasks": 16,
+        "Create a task": 21,
+        "Create and delete 1 task": 13,
+        "Create and update 1 task": 17,
+        "Create, close and reopen 1 task": 16,
+        "Complete flow for 1 task": 17
+      },
+      "errors": {},
+      "codes": {
+        "429": 101
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 7,
+      "pendingRequests": 7,
+      "scenariosAvoided": 0
+    },
+    {
+      "timestamp": "2021-03-25T04:53:37.665Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 2,
+      "requestsCompleted": 8,
+      "latency": {
+        "min": 739,
+        "max": 781.2,
+        "median": 766,
+        "p95": 781.2,
+        "p99": 781.2
+      },
+      "rps": {
+        "count": 1,
+        "mean": 1.01
+      },
+      "scenarioDuration": {
+        "min": 754.6,
+        "max": 783,
+        "median": 768.8,
+        "p95": 783,
+        "p99": 783
+      },
+      "scenarioCounts": {
+        "Create and update 1 task": 1
+      },
+      "errors": {},
+      "codes": {
+        "429": 8
+      },
+      "matches": 0,
+      "customStats": {},
+      "counters": {},
+      "concurrency": 0,
+      "pendingRequests": 0,
+      "scenariosAvoided": 0
+    }
+  ]
+};
+  </script>
+
+  <style>
+      h1 {
+        line-height: 200%;
+      }
+
+      body {
+          background-color: #fcfcfc;
+      }
+
+      .container {
+          width: 100%;
+          min-width: 960px;
+      }
+  </style>
+
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="row" id="header">
+  <div class="col-lg-4 col-lg-offset-4">
+    <pre style="font-size: 5pt; background-color: #fcfcfc; border: none;">
+            _   _ _ _                                                _
+  __ _ _ __| |_(_) | | ___ _ __ _   _      _ __ ___ _ __   ___  _ __| |_
+ / _` | '__| __| | | |/ _ \ '__| | | |    | '__/ _ \ '_ \ / _ \| '__| __|
+| (_| | |  | |_| | | |  __/ |  | |_| |    | | |  __/ |_) | (_) | |  | |_
+ \__,_|_|   \__|_|_|_|\___|_|   \__, |    |_|  \___| .__/ \___/|_|   \__|
+                                |___/              |_|
+
+    </pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="text-center" id="page-title">Test run on <span id="timestamp">date</span></h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3">
+    <p><strong>Summary</strong></p>
+    <table class="table table-bordered table-hover table-condensed">
+      <tbody>
+        <tr>
+          <td>Test duration</td>
+          <td><span id="testDuration">0</span> sec</td>
+        </tr>
+        <tr>
+          <td>Scenarios created</td>
+          <td><span id="scenariosCreated">0</span></td>
+        </tr>
+
+        <tr>
+          <td>Scenarios completed</td>
+          <td><span id="scenariosCompleted">0</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-lg-5" id="scenarioCountsContainer">
+    <div>
+      <strong>Scenario counts:</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="scenarioCounts">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-1">
+    <div id="codesContainer">
+      <strong>Codes</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="codes">
+      </table>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div id="errorsContainer">
+      <strong>Errors</strong>
+
+      <p></p>
+
+      <table class="table table-bordered table-hover table-condensed" id="errors">
+      </table>
+    </div>
+  </div>
+</div> <!-- /.row -->
+
+<div class="row">
+  <div class="text-center col-lg-12">
+    <h2>Charts</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="latency-histogram text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="latency text-center col-lg-12"></div>
+</div>
+
+<div class="latency-legend"></div>
+
+<div class="row">
+
+</div>
+
+<div class="row">
+  <div class="concurrency text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="rps-mean text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="rps-count text-center col-lg-12"></div>
+</div>
+
+<div class="row">
+  <div class="codes-line text-center col-lg-12"></div>
+</div>
+<div class="row">
+  <div class="errors-line text-center col-lg-12"></div>
+</div>
+
+
+  
+
+
+</div>
+
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h3 class="text-center">Raw report data</h3>
+    <p>This is the raw JSON stats output that the report was generated from.</p>
+    <div id="editor">
+    </div>
+  </div>
+</div>
+
+<script>
+var editor = ace.edit("editor");
+editor.getSession().setMode("ace/mode/javascript");
+editor.setValue(JSON.stringify(Report, null, 2));
+editor.gotoLine(1);editor.setHighlightActiveLine(false);
+
+var l = _;
+
+$('#timestamp').html(moment(Report.aggregate.timestamp).format('DD MMM YYYY HH:mm:SS'));
+$('#testDuration').html(l.size(Report.intermediate) * 10);
+$('#scenariosCompleted').html(Report.aggregate.scenariosCompleted);
+$('#scenariosCreated').html(Report.aggregate.scenariosCreated);
+
+var markers = [];
+if(l.size(Report.phases) > 0) {
+  markers = l.foldl(Report.phases, function(acc, phase, index) {
+    var label = phase.name || 'Phase ' + (index + 1);
+    var timestamp = (index === 0) ? 0 : Report.phases[index - 1].duration + acc[index - 1].timestamp;
+
+    acc.push({
+      timestamp: timestamp,
+      label: label
+    });
+
+    return acc;
+  }, []);
+}
+
+if (l.size(Report.aggregate.scenarioCounts) > 0) {
+  l.each(Report.aggregate.scenarioCounts, function(count, name) {
+    var $tdName = $('<td>' + name + '</td>');
+    var percentage = Math.round(count / Report.aggregate.scenariosCreated * 100 * 1000) / 1000;
+    var $tdCount = $('<td>' + count + ' (' + percentage + '%)' + '</td>');
+    var $el = $('<tr></tr>')
+      .append($tdName)
+      .append($tdCount)
+      .appendTo($('#scenarioCounts'));
+  });
+} else {
+  $('#scenarioCountsContainer').hide();
+}
+
+if (l.size(Report.aggregate.codes) > 0) {
+  l.each(Report.aggregate.codes, function(count, code) {
+    var anchor = '';
+    if (code >= 100 && code < 200) {
+      anchor = '#1xx_Informational';
+    } else if (code >= 200 && code < 300) {
+      anchor = '#2xx_Success';
+    } else if (code >= 300 && code < 400) {
+      anchor = '#3xx_Redirection';
+    } else if (code >= 400 && code < 500) {
+      anchor = '#4xx_Client_Error';
+    } else if (code >= 500 && code < 600) {
+      anchor = '#5xx_Server_Error';
+    }
+
+    var $a = $('<a>' + code + '</a>').attr('href', 'https://en.wikipedia.org/wiki/List_of_HTTP_status_codes' + anchor);
+    var $td = $('<td></td>').append($a);
+    var $el = $('<tr></tr>')
+      .append($td)
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#codes'));
+  });
+} else {
+  $('#codesContainer').hide();
+}
+
+if (l.size(Report.aggregate.errors) > 0) {
+  l.each(Report.aggregate.errors, function(count, code) {
+    var $el = $('<tr></tr>')
+      .append($('<td>' + code + '</td>'))
+      .append($('<td>' + count + '</td>'))
+      .appendTo($('#errors'));
+  });
+} else {
+  $('#errorsContainer > p').html('&#10004; Test completed without network or OS errors.');
+}
+
+var histogramData = l.map(Report.aggregate.latency, function(v, k) { return {bin: k, value: v} });
+
+MG.data_graphic({
+  chart_type: 'bar',
+  x_label: 'Percentile',
+  y_label: '(ms)',
+  animate_on_load: true,
+  title: 'Overall Latency Distribution',
+  description: 'Distribution of all observed response latencies',
+  target: '.latency-histogram',
+  data: histogramData,
+  x_accessor: 'bin',
+  y_accessor: 'value',
+  binned: true,
+  height: 250,
+  interpolate: 'monotone',
+  padding_percentage: 0,
+  bar_orientation: 'vertical',
+  width: 450
+});
+
+var chartData = l.map(
+  window.Report.intermediate,
+  function(o,i) {
+    return {
+      timestamp: i*10+10,
+
+      rpsMean: o.rps.mean,
+      rpsCount: o.rps.count,
+      concurrency: o.concurrency,
+      latencyMax: o.latency.max,
+      latencyp99: o.latency.p99,
+      latencyp95: o.latency.p95,
+      latencyMedian: o.latency.median,
+      latencyMin: o.latency.min
+    }
+  });
+
+//
+// Response codes
+//
+
+if (l.size(Report.aggregate.codes) > 0) {
+  var codesData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.codes, function(count, code) {
+      res[code] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueCodes = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.codes, function(count, code) {
+      if (l.indexOf(acc, code) === -1) {
+        acc.push(code);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    x_label: 'Time',
+    y_label: 'Count',
+    title: 'HTTP codes',
+    description: 'Occurence of HTTP response codes',
+    target: '.codes-line',
+    data: codesData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueCodes,
+    legend: uniqueCodes,
+    right: 50,
+    chart_type: 'line',
+    area: false,
+    markers: markers,
+    width: 900
+  });
+}
+
+//
+// Errors
+//
+
+if (l.size(Report.aggregate.errors) > 0) {
+  var errorData = l.foldl(Report.intermediate, function(acc, o, i) {
+    var res = {};
+    res.timestamp = i*10+10;
+    l.each(o.errors, function(count, name) {
+      res[name] = count;
+    });
+    acc.push(res);
+    return acc;
+  }, []);
+  var uniqueErrors = l.foldl(Report.intermediate, function(acc, o) {
+    l.each(o.errors, function(count, name) {
+      if (l.indexOf(acc, name) === -1) {
+        acc.push(name);
+      }
+    });
+    return acc;
+  }, []);
+
+  MG.data_graphic({
+    title: 'Error Codes',
+    description: 'Occurence of error codes',
+    target: '.errors-line',
+    data: errorData,
+    x_accessor: 'timestamp',
+    y_accessor: uniqueErrors,
+    chart_type: 'line',
+    area: false,
+    markers: markers
+  });
+
+}
+
+//
+// Latency
+//
+MG.data_graphic({
+  chart_type: 'line',
+  x_label: 'Time',
+  y_label: '(ms)',
+  animate_on_load: true,
+  area: false,
+  title: "Latency At Intervals",
+  description: "Latency values at different points during the test run",
+  data: chartData,
+  target: '.latency',
+  width: 900,
+  x_accessor: 'timestamp',
+  y_accessor: ['latencyMin', 'latencyMedian', 'latencyp95', 'latencyMax'],
+  legend: ['min', 'p50', 'p95', 'max'],
+  //legend_target: '.latency-legend',
+  right: 50,
+  interpolate: 'monotone',
+  mouseover: function(d, i) {
+  },
+  markers: markers
+        });
+
+            MG.data_graphic({
+            animate_on_load: true,
+            area: false,
+            y_label: 'Count',
+            x_label: 'Time',
+            title: 'Concurrent users',
+            description: 'Concurrent users',
+            data: chartData,
+            target: '.concurrency',
+            x_accessor: 'timestamp',
+            y_accessor: ['concurrency'],
+            interpolate: 'monotone',
+            markers: markers,
+            width: 900
+            });
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'Mean RPS',
+  description: 'Mean requests per second',
+  data: chartData,
+  target: '.rps-mean',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsMean'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+
+MG.data_graphic({
+  animate_on_load: true,
+  area: false,
+  y_label: 'Count',
+  x_label: 'Time',
+  title: 'RPS Count',
+  description: 'Count of requests per second',
+  data: chartData,
+  target: '.rps-count',
+  x_accessor: 'timestamp',
+  y_accessor: ['rpsCount'],
+  interpolate: 'monotone',
+  markers: markers,
+  width: 900
+});
+</script>
+<div id="footer">
+  <footer>This report was created with <a href="https://artillery.io">Artillery</a> - free open-source load-testing for HTTP and WebSockets</footer>
+</div>
+</body>
+</html>

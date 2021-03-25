@@ -1,0 +1,178 @@
+config:
+  target: "https://api.todoist.com"
+  phases:
+    # Load, Defined by rate limit of 450 request and average time in which starts responding 429
+    - duration: 60
+      arrivalRate: 5
+      maxVusers: 10
+      name: "Load Phase"
+    # Stress
+    - duration: 30
+      arrivalRate: 1
+      rampTo: 50
+      name: "Ramp up load"
+    - duration: 40
+      arrivalRate: 50
+      name: "Sustained load"
+  defaults:
+    headers:
+      Authorization: Bearer {{ $processEnvironment.TOKEN }}
+      Content-type: application/json
+  processor: "./myProcessor.js"
+
+scenarios:
+  - name: "Complete flow for 1 task"
+    flow:
+      # Create a new task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks"
+          json:
+            content: "{{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idTask"
+      - log: "Task created: {{ idTask }}"
+      # Get an active task
+      - get:
+          url: "/rest/v1/tasks/{{ idTask }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+      # Get active tasks
+      - get:
+          url: "/rest/v1/tasks"
+          expect:
+            - statusCode: 200
+            - contentType: json
+      # Update a task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}"
+          json:
+            content: "UPDATED: {{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 204
+      - log: "Task updated with content: {{ contentTask }}"
+      # Complete a task
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}/close"
+          expect:
+            - statusCode: 204
+      - log: "task closed: {{ idTask }}"
+      # Reopen a task
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}/reopen"
+          expect:
+            - statusCode: 204
+      - log: "Task reopened: {{ idTask }}"
+      # Delete a task
+      - delete:
+          url: "/rest/v1/tasks/{{ idTask }}"
+          expect:
+            - statusCode: 204
+      - log: "Task deleted: {{ idTask }}"
+  - name: "Get all active tasks"
+    flow:
+      - get:
+          url: "/rest/v1/tasks"
+          expect:
+            - statusCode: 200
+            - contentType: json
+  - name: "Create a task"
+    # Added a little weight to this scenario as this is the most important request to test due user functionality, resource consumption in server (compared to others) and because is atomic.
+    weight: 1.5
+    flow:
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks"
+          json:
+            content: "{{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idTask"
+      - log: "IDTaskCreated: {{ idTask }}"
+  - name: "Create and delete 1 task"
+    flow:
+      # Create a new task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks"
+          json:
+            content: "{{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idTask"
+      - log: "IDTaskCreated: {{ idTask }}"
+      # Delete a task
+      - delete:
+          url: "/rest/v1/tasks/{{ idTask }}"
+          expect:
+            - statusCode: 204
+      - log: "Task deleted: {{ idTask }}"
+  - name: "Create and update 1 task"
+    flow:
+      # Create a new task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks"
+          json:
+            content: "{{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idTask"
+      - log: "Task created: {{ idTask }}"
+      # Update a task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}"
+          json:
+            content: "UPDATED: {{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 204
+  - name: "Create, close and reopen 1 task"
+    flow:
+      # Create a new task
+      - function: "generateRandomTaskFields"
+      - post:
+          url: "/rest/v1/tasks"
+          json:
+            content: "{{ contentTask }}"
+            due_string: "{{ dueString }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idTask"
+      - log: "Task created: {{ idTask }}"
+      # Complete a task
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}/close"
+          expect:
+            - statusCode: 204
+      - log: "task closed: {{ idTask }}"
+      # Reopen a task
+      - post:
+          url: "/rest/v1/tasks/{{ idTask }}/reopen"
+          expect:
+            - statusCode: 204
+      - log: "Task reopened: {{ idTask }}"

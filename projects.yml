@@ -1,0 +1,71 @@
+config:
+  target: "https://api.todoist.com"
+  phases:
+    # Load, defined by rate limit of 450 request
+    - duration: 85
+      arrivalRate: 5
+      maxVusers: 10
+      name: "Load Phase"
+    # Stress
+    - duration: 120
+      arrivalRate: 5
+      rampTo: 50
+      name: "Ramp up load"
+    - duration: 600
+      arrivalRate: 50
+      name: "Sustained load"
+  defaults:
+    headers:
+      Authorization: Bearer {{ $processEnvironment.TOKEN }}
+      Content-type: application/json
+  processor: "./myProcessor.js"
+
+scenarios:
+  - name: "Create a project"
+    flow:
+      - function: "generateRandomProjectName"
+      - post:
+          url: "/rest/v1/projects"
+          json:
+            name: "{{ projectName }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idProject" 
+      - log: "Poject created with ID: {{ idProject }}"
+  - name: "Basic flow for 1 project"
+    flow:
+      # Create a project
+      - function: "generateRandomProjectName"
+      - post:
+          url: "/rest/v1/projects"
+          json:
+            name: "{{ projectName }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+          capture:
+            json: "$.id"
+            as: "idProject" 
+      - log: "Poject created with ID: {{ idProject }}"
+      #Get a project
+      - get:
+          url: "/rest/v1/projects/{{ idProject }}"
+          expect:
+            - statusCode: 200
+            - contentType: json
+      #Update a project's name
+      - post:
+          url: "/rest/v1/projects/{{ idProject }}"
+          json:
+           name: "UPDATED: {{ projectName }}"
+          expect:
+            - statusCode: 204
+      - log: "Project updated with name: {{ projectName }}"
+      # Delete a project     
+      - delete:
+          url: "/rest/v1/projects/{{ id }}"
+          expect:
+            - statusCode: 204

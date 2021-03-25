@@ -1,0 +1,19 @@
+{
+  "name": "assignment_3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test-tasks": "artillery run --output results/report-tasks.json tasks.yml && artillery report --output results/report-tasks.html results/report-tasks.json",
+    "test-projects": "artillery run --output results/report-projects.json projects.yml && artillery report --output results/report-projects.html results/report-projects.json",
+    "test-all": "artillery run --output results/report-projects.json projects.yml && artillery report --output results/report-projects.html results/report-projects.json; artillery run --output results/report-tasks.json tasks.yml && artillery report --output results/report-tasks.html results/report-tasks.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "artillery": "^1.6.2",
+    "dotenv": "^8.2.0",
+    "faker": "^5.4.0"
+  }
+}
