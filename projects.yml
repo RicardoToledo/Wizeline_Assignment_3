@@ -1,17 +1,17 @@
 config:
   target: "https://api.todoist.com"
   phases:
-    # Load, defined by rate limit of 450 request
-    - duration: 85
+    # Load, Defined by rate limit of 450 request and average time in which starts responding 429
+    - duration: 60
       arrivalRate: 5
       maxVusers: 10
       name: "Load Phase"
     # Stress
-    - duration: 120
-      arrivalRate: 5
+    - duration: 30
+      arrivalRate: 1
       rampTo: 50
       name: "Ramp up load"
-    - duration: 600
+    - duration: 40
       arrivalRate: 50
       name: "Sustained load"
   defaults:
